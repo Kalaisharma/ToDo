@@ -1,11 +1,12 @@
 // src/Services/crudService.js
 
 import { axiosCall } from "../Client/clientcall";
-
+const renderurl = "https://todoserver-mqeb.onrender.com/"
+ const localhosturl = "http://localhost:5000/";
 // Create a new task
 export const createTask = (task) => {
   try {
-    const response = axiosCall("http://localhost:5000/api/addtask", "POST", {
+    const response = axiosCall("https://todoserver-mqeb.onrender.com/api/addtask", "POST", {
       task,
     });
     return response;
@@ -17,7 +18,7 @@ export const createTask = (task) => {
 // Get all tasks
 export const getAllTasks = async () => {
   try {
-    const response = await axiosCall("http://localhost:5000/api/tasks", "GET");
+    const response = await axiosCall("https://todoserver-mqeb.onrender.com/api/tasks", "GET");
     return response;
   } catch (error) {
     throw error;
@@ -28,7 +29,7 @@ export const getAllTasks = async () => {
 export const updateTask = async (id, updatedTask) => {
   try {
     const response = await axiosCall(
-      `http://localhost:5000/api/updatetask/${id}`,
+      `https://todoserver-mqeb.onrender.com/api/updatetask/${id}`,
       "PUT",
       { task: updatedTask }
     );
@@ -42,7 +43,7 @@ export const updateTask = async (id, updatedTask) => {
 export const deletetodoTask = async (id) => {
   try {
     const response = await axiosCall(
-      `http://localhost:5000/api/deletetask/${id}`,
+      `https://todoserver-mqeb.onrender.com/api/deletetask/${id}`,
       "DELETE"
     );
     return response;
