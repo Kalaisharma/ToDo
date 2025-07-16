@@ -2,8 +2,8 @@ const Task = require("../Models/Task");
 
 exports.createTask = async (req, res) => {
   try {
-    const { task } = req.body;
-    const newTask = new Task({ task });
+    const { task, category } = req.body;
+    const newTask = new Task({ task, category });
     const saved = await newTask.save();
     res.status(201).json(saved);
   } catch (err) {
@@ -23,8 +23,22 @@ exports.getTasks = async (_req, res) => {
 exports.updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const { task } = req.body;
-    const updated = await Task.findByIdAndUpdate(id, { task }, { new: true });
+    const { task,category } = req.body;
+    const updated = await Task.findByIdAndUpdate(id, { task,category }, { new: true });
+    res.status(201).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: "Error updating task" });
+  }
+};
+exports.updateTaskStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updated = await Task.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
     res.status(201).json(updated);
   } catch (err) {
     res.status(500).json({ error: "Error updating task" });

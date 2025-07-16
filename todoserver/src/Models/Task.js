@@ -6,6 +6,16 @@ const TaskSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    category: {
+      type: String,
+      enum: ["Work", "Personal"],
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["Pending", "In Progress", "Completed"],
+      default: "Pending",
+    },
   },
   { timestamps: true }
 );
